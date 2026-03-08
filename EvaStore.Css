@@ -1,0 +1,116 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9; /* Fond légèrement gris pour contraster avec la zone du contenu */
+}
+
+/* Header Styles */
+header {
+    background: black;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff69b4; /* Rose vif pour le logo */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Banner Styles */
+.banner {
+    background: url('images/banner.jpg') no-repeat center center / cover;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.banner h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.banner p {
+    font-size: 18px;
+}
+
+/* Catalogue Styles */
+.catalogue {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #ff69b4; /* Rose vif pour les titres de section */
+}
+
+.produit {
+    border: 1px solid #ddd;
+    margin: 20px;
+    padding: 20px;
+    background: white; /* Fond blanc pour chaque produit */
+    border-radius: 8px; /* Coins arrondis */
+    transition: transform 0.3s; /* Transition pour l'effet hover */
+}
+
+.produit:hover {
+    transform: scale(1.05); /* Effet d'agrandissement au survol */
+}
+
+/* Button Styles */
+button {
+    background-color: #ff69b4; /* Rose vif */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transition pour le changement de couleur */
+}
+
+button:hover {
+    background-color: #ff1493; /* Rose plus foncé au survol */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background: black;
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .catalogue {
+        padding: 20px;
+    }
+
+    .produit {
+        margin: 10px;
+        padding: 15px;
+    }
+}
