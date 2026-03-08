@@ -1,43 +1,356 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produit - EvaStore</title>
-    <link rel="stylesheet" href="EvaStore.Css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EVA STORE — Mode Homme & Femme</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="EvaStore.Css" />
 </head>
 <body>
-    <header>
-        <div class="">EvaStore</div>
-        <nav>
-            <ul>
-                <li><a href="EvaStore.html">Accueil</a></li>
-                <li><a href="catalogue.html">Catalogue</a></li>
-                <li><a href="apropos.html">À Propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="panier.html">Panier</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="produit-detail">
-        <h2>T-Shirt Élégant</h2>
-        <img src="images/tshirt.jpg" alt="T-Shirt Élégant" />
-        <p>Description détaillée du produit ici.</p>
-        <p>Prix : 25€</p>
-        <button class="ajouter-panier">Ajouter au Panier</button>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-        <h3>Avis Clients</h3>
-        <div class="avis">
-            <p><strong>Client 1:</strong> Super produit, très confortable !</p>
-            <p><strong>Client 2:</strong> J'adore la couleur et la qualité est top.</p>
-        </div>
-    </section>
+<!-- NAV -->
 
-    <footer>
-        <p>&copy; 2023 EvaStore. Tous droits réservés.</p>
-    </footer>
+<nav>
+  <a class="nav-logo" href="#">EVA<span>&nbsp;</span>STORE</a>
+  <div class="nav-links">
+    <a href="#">Femme</a>
+                <a href="#">Homme</a>
+                <a href="#">Nouveautés</a>
+                <a href="EvaStore.html">Accueil</a></li>
+                <a href="catalogue.html">Catalogue</a>
+                <a href="apropos.html">À Propos</a>
+                <a href="contact.html">Contact</a>
+                <a href="panier.html">Panier</a>
+    
+  </div>
+</nav>
 
-    <script src="EvasStore.js"></script>
+<!-- HERO -->
+
+<section class="hero">
+
+  <!-- WOMAN -->
+
+  <div class="hero-panel hero-woman">
+    <div class="figure figure-woman">
+      <svg class="silhouette-woman" viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Head -->
+        <ellipse cx="100" cy="52" rx="28" ry="34" fill="rgba(214,85,122,0.15)" stroke="rgba(214,85,122,0.3)" stroke-width="1"/>
+        <!-- Hair -->
+        <path d="M72 45 Q60 20 78 10 Q100 0 122 10 Q140 20 128 45" fill="rgba(214,85,122,0.2)" stroke="none"/>
+        <!-- Neck -->
+        <rect x="92" y="82" width="16" height="18" rx="4" fill="rgba(245,221,229,0.08)"/>
+        <!-- Dress body -->
+        <path d="M68 100 Q60 120 55 160 L50 280 Q50 290 55 295 L145 295 Q150 290 150 280 L145 160 Q140 120 132 100 Z" fill="rgba(214,85,122,0.12)" stroke="rgba(214,85,122,0.25)" stroke-width="1"/>
+        <!-- Dress skirt flare -->
+        <path d="M50 250 Q30 300 25 380 Q20 430 35 460 L165 460 Q180 430 175 380 Q170 300 150 250 Z" fill="rgba(214,85,122,0.15)" stroke="rgba(214,85,122,0.3)" stroke-width="1"/>
+        <!-- Belt -->
+        <rect x="55" y="188" width="90" height="10" rx="3" fill="rgba(214,85,122,0.4)"/>
+        <!-- Arms -->
+        <path d="M68 105 Q42 140 38 200" stroke="rgba(245,221,229,0.1)" stroke-width="12" stroke-linecap="round" fill="none"/>
+        <path d="M132 105 Q158 140 162 200" stroke="rgba(245,221,229,0.1)" stroke-width="12" stroke-linecap="round" fill="none"/>
+        <!-- Shoes -->
+        <ellipse cx="70" cy="480" rx="18" ry="8" fill="rgba(214,85,122,0.3)"/>
+        <ellipse cx="130" cy="480" rx="18" ry="8" fill="rgba(214,85,122,0.3)"/>
+        <rect x="64" y="455" width="12" height="30" rx="3" fill="rgba(214,85,122,0.25)"/>
+        <rect x="124" y="455" width="12" height="30" rx="3" fill="rgba(214,85,122,0.25)"/>
+        <!-- Heel -->
+        <rect x="64" y="478" width="4" height="10" rx="2" fill="rgba(214,85,122,0.4)"/>
+        <rect x="124" y="478" width="4" height="10" rx="2" fill="rgba(214,85,122,0.4)"/>
+        <!-- Glow effect -->
+        <ellipse cx="100" cy="460" rx="70" ry="12" fill="rgba(214,85,122,0.08)"/>
+      </svg>
+    </div>
+    <div style="position:relative;z-index:2">
+      <p class="hero-label">Collection Printemps 2026</p>
+      <h1 class="hero-title">La <em>femme</em><br>qui ose.</h1>
+      <p class="hero-sub">Des silhouettes audacieuses pour la femme moderne, entre élégance et caractère.</p>
+      <a class="hero-cta" href="#">
+        <span class="hero-cta-text">Découvrir Femme</span>
+        <span class="hero-cta-arrow"></span>
+      </a>
+    </div>
+    <div class="scroll-hint">
+      <span>Défiler</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- MAN -->
+
+  <div class="hero-panel hero-man">
+    <div class="figure figure-man">
+      <svg class="silhouette-man" viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Head -->
+        <ellipse cx="100" cy="50" rx="30" ry="36" fill="rgba(232,160,176,0.08)" stroke="rgba(232,160,176,0.2)" stroke-width="1"/>
+        <!-- Short hair -->
+        <path d="M70 38 Q70 10 100 8 Q130 10 130 38" fill="rgba(232,160,176,0.12)" stroke="none"/>
+        <!-- Neck -->
+        <rect x="90" y="82" width="20" height="18" rx="4" fill="rgba(232,160,176,0.06)"/>
+        <!-- Suit jacket -->
+        <path d="M58 100 L42 280 L158 280 L142 100 Z" fill="rgba(20,20,20,0.8)" stroke="rgba(232,160,176,0.2)" stroke-width="1"/>
+        <!-- Lapels -->
+        <path d="M100 100 L78 140 L100 155" fill="rgba(232,160,176,0.08)" stroke="rgba(232,160,176,0.25)" stroke-width="0.5"/>
+        <path d="M100 100 L122 140 L100 155" fill="rgba(232,160,176,0.08)" stroke="rgba(232,160,176,0.25)" stroke-width="0.5"/>
+        <!-- Tie -->
+        <path d="M100 108 L94 155 L100 165 L106 155 Z" fill="rgba(214,85,122,0.5)" stroke="none"/>
+        <!-- Shirt collar -->
+        <path d="M88 98 L82 112 L100 108 L118 112 L112 98 Z" fill="rgba(245,221,229,0.1)" stroke="rgba(232,160,176,0.2)" stroke-width="0.5"/>
+        <!-- Pocket square -->
+        <path d="M60 130 L60 145 L72 140 Z" fill="rgba(214,85,122,0.5)"/>
+        <!-- Trousers -->
+        <path d="M62 278 L48 460 L90 460 L100 330 L110 460 L152 460 L138 278 Z" fill="rgba(15,15,15,0.9)" stroke="rgba(232,160,176,0.15)" stroke-width="1"/>
+        <!-- Crease lines -->
+        <line x1="68" y1="280" x2="62" y2="460" stroke="rgba(232,160,176,0.08)" stroke-width="0.5"/>
+        <line x1="132" y1="280" x2="138" y2="460" stroke="rgba(232,160,176,0.08)" stroke-width="0.5"/>
+        <!-- Shoes -->
+        <path d="M42 458 Q30 460 28 470 Q26 478 50 480 L90 478 L90 458 Z" fill="rgba(20,20,20,0.9)" stroke="rgba(232,160,176,0.2)" stroke-width="1"/>
+        <path d="M158 458 Q170 460 172 470 Q174 478 150 480 L110 478 L110 458 Z" fill="rgba(20,20,20,0.9)" stroke="rgba(232,160,176,0.2)" stroke-width="1"/>
+        <!-- Arms -->
+        <path d="M62 105 L38 230 L55 235 L72 130" fill="rgba(20,20,20,0.8)" stroke="rgba(232,160,176,0.18)" stroke-width="1"/>
+        <path d="M138 105 L162 230 L145 235 L128 130" fill="rgba(20,20,20,0.8)" stroke="rgba(232,160,176,0.18)" stroke-width="1"/>
+        <!-- Cuffs -->
+        <rect x="33" y="228" width="24" height="10" rx="3" fill="rgba(245,221,229,0.06)" stroke="rgba(232,160,176,0.2)" stroke-width="0.5"/>
+        <rect x="143" y="228" width="24" height="10" rx="3" fill="rgba(245,221,229,0.06)" stroke="rgba(232,160,176,0.2)" stroke-width="0.5"/>
+        <!-- Buttons -->
+        <circle cx="100" cy="190" r="2" fill="rgba(232,160,176,0.3)"/>
+        <circle cx="100" cy="210" r="2" fill="rgba(232,160,176,0.3)"/>
+        <circle cx="100" cy="230" r="2" fill="rgba(232,160,176,0.3)"/>
+        <!-- Glow -->
+        <ellipse cx="100" cy="468" rx="72" ry="10" fill="rgba(232,160,176,0.05)"/>
+      </svg>
+    </div>
+    <div style="position:relative;z-index:2">
+      <p class="hero-label">Collection Printemps 2026</p>
+      <h1 class="hero-title">L'homme<br>qui <em>séduit.</em></h1>
+      <p class="hero-sub">Une garde-robe pensée pour l'élégance au quotidien, du casual au sophistiqué.</p>
+      <a class="hero-cta" href="#">
+        <span class="hero-cta-text">Découvrir Homme</span>
+        <span class="hero-cta-arrow"></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- CENTER DIVIDER -->
+
+  <div class="hero-center">
+    <div class="divider-line"></div>
+    <div class="divider-diamond"></div>
+    <div class="divider-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Livraison Gratuite dès 80€ <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Nouveautés chaque semaine <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Retours gratuits 30 jours <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Matières premium <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Mode éthique & responsable <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Livraison Gratuite dès 80€ <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Nouveautés chaque semaine <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Retours gratuits 30 jours <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Matières premium <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Mode éthique & responsable <span class="ticker-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- COLLECTIONS -->
+
+<section class="collections">
+  <div class="section-header">
+    <div>
+      <p class="section-label">Notre Univers</p>
+      <h2 class="section-title">Collections<br><em>incontournables</em></h2>
+    </div>
+    <a class="see-all" href="#">Voir tout →</a>
+  </div>
+
+  <div class="cards-grid">
+    <!-- Card 1 — large -->
+    <div class="card card-1">
+      <div class="card-bg">
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.5" viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <circle cx="300" cy="100" r="150" fill="none" stroke="rgba(214,85,122,0.15)" stroke-width="60"/>
+          <circle cx="80" cy="320" r="90" fill="none" stroke="rgba(214,85,122,0.1)" stroke-width="40"/>
+          <line x1="0" y1="210" x2="400" y2="210" stroke="rgba(214,85,122,0.08)" stroke-width="1"/>
+          <g transform="translate(120,10) scale(0.7)">
+            <ellipse cx="100" cy="52" rx="28" ry="34" fill="rgba(214,85,122,0.2)"/>
+            <path d="M72 45 Q60 20 78 10 Q100 0 122 10 Q140 20 128 45" fill="rgba(214,85,122,0.25)"/>
+            <rect x="92" y="82" width="16" height="18" rx="4" fill="rgba(245,221,229,0.1)"/>
+            <path d="M68 100 Q60 120 55 160 L50 280 Q50 290 55 295 L145 295 Q150 290 150 280 L145 160 Q140 120 132 100 Z" fill="rgba(214,85,122,0.2)" stroke="rgba(214,85,122,0.4)" stroke-width="1.5"/>
+            <path d="M50 250 Q30 300 25 380 Q20 430 35 500 L165 500 Q180 430 175 380 Q170 300 150 250 Z" fill="rgba(214,85,122,0.18)" stroke="rgba(214,85,122,0.35)" stroke-width="1.5"/>
+            <rect x="55" y="188" width="90" height="10" rx="3" fill="rgba(214,85,122,0.6)"/>
+            <path d="M68 105 Q42 140 38 200" stroke="rgba(245,221,229,0.12)" stroke-width="14" stroke-linecap="round" fill="none"/>
+            <path d="M132 105 Q158 140 162 200" stroke="rgba(245,221,229,0.12)" stroke-width="14" stroke-linecap="round" fill="none"/>
+            <rect x="64" y="455" width="12" height="30" rx="3" fill="rgba(214,85,122,0.35)"/>
+            <rect x="124" y="455" width="12" height="30" rx="3" fill="rgba(214,85,122,0.35)"/>
+            <rect x="64" y="478" width="4" height="10" rx="2" fill="rgba(214,85,122,0.5)"/>
+            <rect x="124" y="478" width="4" height="10" rx="2" fill="rgba(214,85,122,0.5)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-overlay">
+        <p class="card-cat">Collection Femme</p>
+        <h3 class="card-name">Robes & Silhouettes</h3>
+        <p class="card-sub">42 pièces disponibles</p>
+        <a class="card-btn" href="#">Explorer</a>
+      </div>
+    </div>
+
+```
+<!-- Card 2 -->
+<div class="card card-2">
+  <div class="card-bg">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.5" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(232,160,176,0.1)" stroke-width="50"/>
+      <g transform="translate(50,30) scale(0.6)">
+        <ellipse cx="100" cy="50" rx="30" ry="36" fill="rgba(232,160,176,0.15)" stroke="rgba(232,160,176,0.25)" stroke-width="1.5"/>
+        <path d="M58 100 L42 280 L158 280 L142 100 Z" fill="rgba(30,30,30,0.7)" stroke="rgba(232,160,176,0.25)" stroke-width="1.5"/>
+        <path d="M100 100 L78 140 L100 155" fill="rgba(232,160,176,0.1)" stroke="rgba(232,160,176,0.3)" stroke-width="0.8"/>
+        <path d="M100 100 L122 140 L100 155" fill="rgba(232,160,176,0.1)" stroke="rgba(232,160,176,0.3)" stroke-width="0.8"/>
+        <path d="M100 108 L94 155 L100 165 L106 155 Z" fill="rgba(214,85,122,0.6)"/>
+        <path d="M62 278 L48 460 L90 460 L100 330 L110 460 L152 460 L138 278 Z" fill="rgba(20,20,20,0.85)" stroke="rgba(232,160,176,0.2)" stroke-width="1"/>
+        <path d="M62 105 L38 230 L55 235 L72 130" fill="rgba(30,30,30,0.7)" stroke="rgba(232,160,176,0.2)" stroke-width="1"/>
+        <path d="M138 105 L162 230 L145 235 L128 130" fill="rgba(30,30,30,0.7)" stroke="rgba(232,160,176,0.2)" stroke-width="1"/>
+      </g>
+    </svg>
+  </div>
+  <div class="card-overlay">
+    <p class="card-cat">Collection Homme</p>
+    <h3 class="card-name">Costumes & Vestes</h3>
+    <p class="card-sub">28 pièces disponibles</p>
+    <a class="card-btn" href="#">Explorer</a>
+  </div>
+</div>
+
+<!-- Card 3 -->
+<div class="card card-3">
+  <div class="card-bg">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.5" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <circle cx="150" cy="200" r="120" fill="none" stroke="rgba(214,85,122,0.12)" stroke-width="60"/>
+      <g transform="translate(20, 80) scale(0.4)">
+        <ellipse cx="100" cy="52" rx="28" ry="34" fill="rgba(214,85,122,0.3)"/>
+        <path d="M68 100 Q60 120 55 160 L50 280 L150 280 L145 160 Q140 120 132 100 Z" fill="rgba(214,85,122,0.25)" stroke="rgba(214,85,122,0.4)" stroke-width="2"/>
+        <path d="M50 250 L35 460 L165 460 L150 250 Z" fill="rgba(214,85,122,0.2)"/>
+      </g>
+      <g transform="translate(130, 80) scale(0.4)">
+        <ellipse cx="100" cy="50" rx="30" ry="36" fill="rgba(232,160,176,0.2)"/>
+        <path d="M58 100 L42 280 L158 280 L142 100 Z" fill="rgba(30,30,30,0.6)" stroke="rgba(232,160,176,0.3)" stroke-width="2"/>
+        <path d="M62 278 L48 460 L152 460 L138 278 Z" fill="rgba(20,20,20,0.7)"/>
+      </g>
+      <text x="150" y="390" text-anchor="middle" font-family="serif" font-size="18" fill="rgba(214,85,122,0.4)" font-style="italic">Ensemble</text>
+    </svg>
+  </div>
+  <div class="card-overlay">
+    <p class="card-cat">Duo Capsule</p>
+    <h3 class="card-name">Looks Assortis</h3>
+    <p class="card-sub">Homme & Femme coordonnés</p>
+    <a class="card-btn" href="#">Explorer</a>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon">🚚</div>
+    <div class="feature-title">Livraison Offerte</div>
+    <div class="feature-desc">Dès 80€ d'achat en France métropolitaine, livraison express disponible.</div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">↩</div>
+    <div class="feature-title">Retours Gratuits</div>
+    <div class="feature-desc">30 jours pour changer d'avis. Retours simplifiés, remboursement rapide.</div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">✦</div>
+    <div class="feature-title">Matières Premium</div>
+    <div class="feature-desc">Sélection rigoureuse de matières nobles pour un rendu et un confort incomparables.</div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">♻</div>
+    <div class="feature-title">Mode Responsable</div>
+    <div class="feature-desc">Engagés pour une mode durable : production éthique, emballages éco-responsables.</div>
+  </div>
+</div>
+
+<!-- PROMO BANNER -->
+
+<div class="promo">
+  <div>
+    <p class="promo-label">✦ Offre Exclusive</p>
+    <h2 class="promo-title">−20% sur votre<br>première <em>commande</em></h2>
+    <p class="promo-sub">Inscrivez-vous à notre newsletter et recevez votre code de réduction immédiatement.</p>
+  </div>
+  <a class="promo-cta" href="#">Je profite de l'offre</a>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">EVA<span>&nbsp;</span>STORE</div>
+  <div class="footer-links">
+    <a href="#">CGV</a>
+    <a href="#">Confidentialité</a>
+    <a href="#">Contact</a>
+    <a href="#">Instagram</a>
+  </div>
+  <div class="footer-copy">© 2026 EVA STORE — Tous droits réservés</div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  function animCursor() {
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
+  document.querySelectorAll('a, button, .card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '20px'; cursor.style.height = '20px';
+      ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = '0.3';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px'; cursor.style.height = '12px';
+      ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '0.6';
+    });
+  });
+
+  // Intersection observer for fade-in on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .feature, .promo').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    io.observe(el);
+  });
+</script>
+
 </body>
 </html>
