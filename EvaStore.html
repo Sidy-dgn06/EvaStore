@@ -21,7 +21,7 @@
     <li><a href="apropos.html">À propos</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="panier.html" class="nav-cart">🛍 Mon Panier <span style="background:var(--gold);color:var(--dark);border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;">3</span></a>
+  <a href="panier.html" class="nav-cart">🛍 Mon Panier <span class="cart-count">3</span></a>
 </nav>
 
 <!-- HERO -->
@@ -54,17 +54,15 @@
 
 ```
 <div class="hero-visual">
-  <div class="floating-badge b1">🔥 Tendance du moment</div>
+  
   <div class="hero-card-main">
-    <div class="hero-product-img">👗</div>
+    <div class="hero-product-img"><img src="images/robe dorée.jpg" alt=""></div>
     <div class="hero-product-name">Robe Élégance Dorée</div>
-    <div style="font-size:0.82rem;color:var(--muted);margin-bottom:0.8rem;">Taille M · Beige</div>
+    <div class="hero-product-meta">Taille M · Beige</div>
     <div class="hero-product-price">45 000 FCFA</div>
     <button class="add-to-cart-mini">Ajouter au panier</button>
   </div>
-  <div class="floating-badge b2">🚚 Livraison gratuite</div>
-</div>
-```
+<div class="floating-badge b1"> Tendance du moment</div>
 
   </div>
 </section>
@@ -72,31 +70,33 @@
 <!-- CATEGORIES -->
 
 <section class="categories-section">
-  <div style="max-width:1200px;margin:0 auto;">
+  <div class="container">
     <div class="section-header">
       <h2>Nos Catégories</h2>
       <p>Explorez notre sélection par univers</p>
     </div>
     <div class="categories-grid">
       <a href="catalogue.html" class="cat-card">
-        <div class="cat-icon">👗</div>
+        
         <div class="cat-name">Robes & Tenues</div>
         <div class="cat-count">142 articles</div>
+        <img src="images/robes 2.jpg" alt="">
       </a>
       <a href="catalogue.html" class="cat-card">
-        <div class="cat-icon">👠</div>
+        
         <div class="cat-name">Chaussures</div>
         <div class="cat-count">98 articles</div>
+        <img src="images/talon.jpg" alt="">
       </a>
       <a href="catalogue.html" class="cat-card">
-        <div class="cat-icon">👜</div>
         <div class="cat-name">Sacs & Accessoires</div>
         <div class="cat-count">75 articles</div>
+        <img src="images/sac.jpg" alt="">
       </a>
       <a href="catalogue.html" class="cat-card">
-        <div class="cat-icon">💍</div>
         <div class="cat-name">Bijoux</div>
         <div class="cat-count">53 articles</div>
+        <img src="images/bijou.jpg" alt="">
       </a>
     </div>
   </div>
@@ -117,12 +117,11 @@
 
   <div class="products-grid">
 
-```
 <div class="product-card">
   <div class="product-img">
-    👗
+    <img src="images/robe dorée.jpg" alt="">
     <span class="product-badge new">Nouveauté</span>
-    <button class="product-fav" onclick="toggleFav(this)">🤍</button>
+    <button class="product-fav" onclick="toggleFav(this)"></button>
   </div>
   <div class="product-body">
     <div class="product-name">Robe Élégance Dorée</div>
@@ -139,9 +138,9 @@
 
 <div class="product-card">
   <div class="product-img">
-    👠
-    <span class="product-badge" style="background:#FFF3E8;color:var(--brown);">Tendance</span>
-    <button class="product-fav" onclick="toggleFav(this)">🤍</button>
+    
+    <span class="product-badge trend">Tendance</span>
+    <button class="product-fav"></button>
   </div>
   <div class="product-body">
     <div class="product-name">Escarpins Classiques</div>
@@ -195,8 +194,8 @@
 <div class="product-card">
   <div class="product-img">
     💍
-    <span class="product-badge" style="background:#FFF3E8;color:var(--brown);">Tendance</span>
-    <button class="product-fav" onclick="toggleFav(this)">🤍</button>
+    <span class="product-badge trend">Tendance</span>
+    <button class="product-fav">🤍</button>
   </div>
   <div class="product-body">
     <div class="product-name">Collier Perles Eva</div>
@@ -233,7 +232,7 @@
 
   </div>
 
-  <div style="text-align:center;margin-top:3rem;">
+  <div class="text-center mt-3">
     <a href="catalogue.html" class="btn-outline">Voir tous les produits →</a>
   </div>
 </section>
@@ -266,8 +265,8 @@
   <div class="features-grid">
     <div class="feature-card">
       <span class="feature-icon">🚚</span>
-      <div class="feature-title">Livraison gratuite</div>
-      <div class="feature-desc">Livraison offerte sur toutes les commandes, partout en Afrique de l'Ouest.</div>
+      <div class="feature-title">Livraison rapide</div>
+      <div class="feature-desc">Livraison   partout au Sénégal.</div>
     </div>
     <div class="feature-card">
       <span class="feature-icon">🔐</span>
@@ -297,22 +296,22 @@
     </div>
     <div class="footer-col">
       <h4>Boutique</h4>
-      <a href="#">Catalogue</a>
+      <a href="catalogue.html">Catalogue</a>
       <a href="#">Nouveautés</a>
       <a href="#">Promotions</a>
       <a href="#">Lookbook</a>
     </div>
     <div class="footer-col">
       <h4>Service</h4>
-      <a href="#">Mon compte</a>
+      <a href="compte.html">Mon compte</a>
       <a href="#">Mes commandes</a>
       <a href="#">Livraison</a>
       <a href="#">Retours</a>
     </div>
     <div class="footer-col">
       <h4>EvaStore</h4>
-      <a href="#">À propos</a>
-      <a href="#">Contact</a>
+      <a href="apropos.html">À propos</a>
+      <a href="contact.html">Contact</a>
       <a href="#">FAQ</a>
       <a href="#">Mentions légales</a>
     </div>
