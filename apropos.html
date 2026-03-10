@@ -1,33 +1,307 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À Propos - EvaStore</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>À Propos — EvaStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --dark: #2a2a25;
+      --dark2: #323228;
+      --dark3: #1e1e1a;
+      --brown: #c4a464;
+      --brown-light: #d4b87a;
+      --brown-pale: #ede0ce;
+      --gray: #8a8478;
+      --border: rgba(196,164,100,0.18);
+      --white: #ffffff;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Jost',sans-serif; background:var(--dark); color:var(--cream); min-height:100vh; }
+
+    /* NAV */
+    header { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 60px; height:72px; background:var(--cream); border-bottom:1px solid rgba(196,164,100,0.2); }
+    .logo { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:#1e1e1a; text-decoration:none; letter-spacing:1px; }
+    .logo span { color:var(--brown); }
+    nav ul { display:flex; gap:36px; list-style:none; }
+    nav a { text-decoration:none; color:#6a6460; font-size:0.75rem; font-weight:500; letter-spacing:2px; text-transform:uppercase; transition:color 0.2s; }
+    nav a:hover, nav a.active { color:#1e1e1a; }
+    .nav-cart { position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(42,42,37,0.2); cursor:pointer; transition:border-color 0.2s; }
+    .nav-cart:hover { border-color:var(--brown); }
+    .nav-cart svg { width:20px; height:20px; stroke:#1e1e1a; fill:none; stroke-width:1.5; }
+    .cart-count { position:absolute; top:-6px; right:-6px; width:20px; height:20px; border-radius:50%; background:var(--brown); color:var(--white); font-size:0.65rem; font-weight:600; display:flex; align-items:center; justify-content:center; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; }
+    .hamburger span { display:block; width:22px; height:1.5px; background:#1e1e1a; transition:all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .mobile-menu { display:none; position:fixed; top:72px; left:0; right:0; background:var(--cream); border-bottom:1px solid rgba(196,164,100,0.2); z-index:99; padding:16px 0; }
+    .mobile-menu.open { display:block; }
+    .mobile-menu ul { list-style:none; display:flex; flex-direction:column; }
+    .mobile-menu ul li a { display:block; padding:14px 30px; color:#6a6460; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; text-decoration:none; border-bottom:1px solid rgba(196,164,100,0.15); }
+    .mobile-menu ul li a:hover { color:#1e1e1a; }
+
+    /* HERO */
+    .page-hero { padding:100px 60px 60px; background:var(--dark2); border-bottom:1px solid var(--border); display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    .hero-tag { display:inline-flex; align-items:center; gap:10px; border:1px solid var(--border); padding:7px 16px; margin-bottom:20px; font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--brown); }
+    .hero-tag::before { content:''; width:5px; height:5px; background:var(--brown); border-radius:50%; }
+    .page-hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,5vw,4.5rem); font-weight:300; line-height:1.05; margin-bottom:20px; color:var(--cream); }
+    .page-hero h1 em { font-style:italic; color:var(--brown); }
+    .page-hero p { color:var(--gray); font-size:0.9rem; line-height:1.8; font-weight:300; }
+    .hero-visual { position:relative; height:320px; }
+    .hero-box-main { position:absolute; top:0; left:0; width:80%; height:85%; background:var(--brown-pale); display:flex; align-items:center; justify-content:center; font-size:6rem; }
+    .hero-box-accent { position:absolute; bottom:0; right:0; width:45%; height:45%; background:var(--brown); display:flex; align-items:center; justify-content:center; padding:20px; }
+    .hero-box-accent p { font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:600; color:var(--dark3); text-align:center; font-style:italic; line-height:1.4; }
+
+    /* STATS */
+    .stats-band { display:grid; grid-template-columns:repeat(4,1fr); background:var(--brown); }
+    .stat-item { text-align:center; padding:32px 20px; border-right:1px solid rgba(30,30,26,0.15); }
+    .stat-item:last-child { border-right:none; }
+    .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:700; color:var(--dark3); line-height:1; }
+    .stat-label { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:rgba(30,30,26,0.6); margin-top:6px; font-weight:600; }
+
+    /* STORY */
+    .story { padding:80px 60px; border-bottom:1px solid var(--border); }
+    .section-label { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+    .section-label::before { content:''; width:32px; height:1px; background:var(--brown); }
+    .section-label span { font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--brown); font-weight:500; }
+    .story h2 { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; margin-bottom:30px; color:var(--cream); }
+    .story h2 em { font-style:italic; color:var(--brown); }
+    .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+    .story-text p { color:var(--gray); font-size:0.9rem; line-height:1.9; font-weight:300; margin-bottom:16px; }
+    .story-timeline { display:flex; flex-direction:column; gap:0; }
+    .timeline-item { display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--border); }
+    .timeline-item:last-child { border-bottom:none; }
+    .timeline-year { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--brown); min-width:60px; }
+    .timeline-content h4 { font-size:0.85rem; font-weight:600; color:var(--cream); margin-bottom:4px; letter-spacing:1px; }
+    .timeline-content p { font-size:0.8rem; color:var(--gray); font-weight:300; line-height:1.6; }
+
+    /* VALUES */
+    .values { padding:80px 60px; background:var(--dark2); border-bottom:1px solid var(--border); }
+    .values-header { text-align:center; margin-bottom:50px; }
+    .values-header h2 { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; color:var(--cream); margin-bottom:10px; }
+    .values-header h2 em { font-style:italic; color:var(--brown); }
+    .values-header p { color:var(--gray); font-size:0.85rem; }
+    .values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; }
+    .value-card { background:var(--dark3); padding:36px 28px; text-align:center; border-bottom:2px solid transparent; transition:border-color 0.3s; }
+    .value-card:hover { border-bottom-color:var(--brown); }
+    .value-icon { font-size:2.2rem; display:block; margin-bottom:16px; }
+    .value-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:500; color:var(--cream); margin-bottom:10px; }
+    .value-card p { font-size:0.82rem; color:var(--gray); line-height:1.7; font-weight:300; }
+
+    /* TEAM */
+    .team { padding:80px 60px; border-bottom:1px solid var(--border); }
+    .team-header { margin-bottom:48px; }
+    .team-header h2 { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; color:var(--cream); }
+    .team-header h2 em { font-style:italic; color:var(--brown); }
+    .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .team-card { background:var(--dark2); overflow:hidden; border:1px solid transparent; transition:border-color 0.3s; }
+    .team-card:hover { border-color:var(--border); }
+    .team-img { height:180px; background:var(--brown-pale); display:flex; align-items:center; justify-content:center; font-size:4.5rem; }
+    .team-info { padding:24px; }
+    .team-name { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:500; color:var(--cream); margin-bottom:4px; }
+    .team-role { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--brown); margin-bottom:12px; font-weight:500; }
+    .team-bio { font-size:0.82rem; color:var(--gray); line-height:1.7; font-weight:300; }
+
+    /* CTA */
+    .cta { background:var(--brown); padding:70px 60px; text-align:center; }
+    .cta h2 { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; color:var(--dark3); margin-bottom:14px; }
+    .cta h2 em { font-style:italic; }
+    .cta p { font-size:0.9rem; color:rgba(30,30,26,0.65); margin-bottom:32px; font-weight:300; }
+    .cta-btn { display:inline-block; background:var(--dark3); color:var(--cream); padding:16px 44px; text-decoration:none; font-size:0.78rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:opacity 0.2s; }
+    .cta-btn:hover { opacity:0.85; }
+
+    footer { background:var(--dark3); color:rgba(245,240,232,0.3); padding:24px 60px; text-align:center; font-size:0.75rem; letter-spacing:1px; border-top:1px solid var(--border); }
+
+    @media(max-width:900px){
+      header { padding:0 20px; }
+      nav ul { display:none; }
+      .hamburger { display:flex; }
+      .page-hero { padding:90px 20px 40px; grid-template-columns:1fr; gap:32px; }
+      .hero-visual { height:220px; }
+      .stats-band { grid-template-columns:repeat(2,1fr); }
+      .story,.values,.team { padding:50px 20px; }
+      .story-grid { grid-template-columns:1fr; gap:32px; }
+      .values-grid { grid-template-columns:repeat(2,1fr); }
+      .team-grid { grid-template-columns:1fr 1fr; }
+      .cta { padding:50px 20px; }
+      footer { padding:20px; }
+    }
+    @media(max-width:480px){
+      .values-grid,.team-grid { grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo">EvaStore</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="catalogue.html">Catalogue</a></li>
-                <li><a href="apropos.html">À Propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="panier.html">Panier</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="apropos">
-        <h2>À Propos de Nous</h2>
-        <p>Chez EvaStore, nous croyons que la mode doit être accessible, élégante et tendance. Nous proposons une sélection de vêtements de haute qualité adaptés aux goûts de chacun.</p>
-        <p>Notre mission est de fournir des pièces uniques qui donnent confiance à ceux qui les portent.</p>
-    </section>
+  <header>
+    <a href="EvaStore.html" class="logo">Eva<span>Store</span></a>
+    <nav>
+      <ul>
+        <li><a href="EvaStore.html">Accueil</a></li>
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="apropos.html" class="active">À Propos</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="panier.html">Panier</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="nav-cart" onclick="window.location='panier.html'">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count">0</span>
+      </div>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
 
-    <footer>
-        <p>&copy; 2023 EvaStore. Tous droits réservés.</p>
-    </footer>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="EvaStore.html">Accueil</a></li>
+      <li><a href="catalogue.html">Catalogue</a></li>
+      <li><a href="apropos.html">À Propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="page-hero">
+    <div>
+      <div class="hero-tag"><span>Notre Histoire</span></div>
+      <h1>Mode, <em>passion</em><br>& élégance</h1>
+      <p>Chez EvaStore, nous croyons que la mode doit être accessible, élégante et tendance. Chaque pièce est soigneusement sélectionnée pour sublimer votre style au quotidien.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-box-main">👗</div>
+      <div class="hero-box-accent"><p>"La mode, c'est une façon de vivre."</p></div>
+    </div>
+  </div>
+
+  <div class="stats-band">
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Années d'expérience</div></div>
+    <div class="stat-item"><div class="stat-num">200+</div><div class="stat-label">Articles disponibles</div></div>
+    <div class="stat-item"><div class="stat-num">1 500+</div><div class="stat-label">Clients satisfaits</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Qualité garantie</div></div>
+  </div>
+
+  <section class="story">
+    <div class="section-label"><span>Notre histoire</span></div>
+    <h2>Nés d'une <em>passion</em> pour la mode</h2>
+    <div class="story-grid">
+      <div class="story-text">
+        <p>EvaStore est né d'une vision simple : rendre la mode de qualité accessible à tous. Fondé par des passionnés de style, notre boutique propose des pièces soigneusement sélectionnées qui allient tendance, confort et durabilité.</p>
+        <p>Notre mission est de fournir des vêtements uniques qui donnent confiance à ceux qui les portent — que ce soit pour une occasion spéciale ou le quotidien.</p>
+        <p>Chaque article de notre catalogue est choisi avec soin pour répondre aux attentes de notre clientèle exigeante, soucieuse du style autant que du rapport qualité-prix.</p>
+      </div>
+      <div class="story-timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-content">
+            <h4>Création d'EvaStore</h4>
+            <p>Lancement de la boutique avec une première collection de 20 pièces soigneusement sélectionnées.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-content">
+            <h4>Expansion du catalogue</h4>
+            <p>Ajout de nouvelles catégories : robes, vestes, accessoires. Plus de 500 clients satisfaits.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-content">
+            <h4>Boutique en ligne</h4>
+            <p>Lancement du site e-commerce pour toucher une clientèle encore plus large.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-content">
+            <h4>Nouveau design & croissance</h4>
+            <p>Refonte complète du site, 1500+ clients et 200+ articles disponibles.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values">
+    <div class="values-header">
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:12px;">
+        <div style="width:28px;height:1px;background:var(--brown);"></div>
+        <span style="font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--brown);font-weight:500;">Nos valeurs</span>
+        <div style="width:28px;height:1px;background:var(--brown);"></div>
+      </div>
+      <h2>Ce qui nous <em>définit</em></h2>
+      <p>Les principes au cœur de chacune de nos décisions</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card"><span class="value-icon">✨</span><h3>Élégance</h3><p>Des pièces raffinées, intemporelles, qui traversent les tendances sans jamais se démoderner.</p></div>
+      <div class="value-card"><span class="value-icon">🤝</span><h3>Confiance</h3><p>Transparence totale sur nos produits, nos prix et notre service après-vente.</p></div>
+      <div class="value-card"><span class="value-icon">🌿</span><h3>Qualité</h3><p>Chaque article est soigneusement inspecté avant d'intégrer notre catalogue.</p></div>
+      <div class="value-card"><span class="value-icon">💫</span><h3>Accessibilité</h3><p>La mode de qualité pour tous — sans compromis sur le style ni sur le budget.</p></div>
+    </div>
+  </section>
+
+  <section class="team">
+    <div class="team-header">
+      <div class="section-label"><span>L'équipe</span></div>
+      <h2>Les <em>visages</em> d'EvaStore</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-img">👩🏽‍💼</div>
+        <div class="team-info">
+          <div class="team-name">Eva Diallo</div>
+          <div class="team-role">Fondatrice & Directrice</div>
+          <p class="team-bio">Passionnée de mode depuis l'enfance, Eva a créé EvaStore pour offrir un accès à des vêtements de qualité à prix juste.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">👨🏿‍💻</div>
+        <div class="team-info">
+          <div class="team-name">Sidy Diagne</div>
+          <div class="team-role">Responsable Digital</div>
+          <p class="team-bio">En charge du site et de la présence en ligne d'EvaStore, Sidy s'assure que l'expérience client soit irréprochable.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">👩🏾‍🎨</div>
+        <div class="team-info">
+          <div class="team-name">Aïssatou Ndiaye</div>
+          <div class="team-role">Styliste & Sélection</div>
+          <p class="team-bio">C'est elle qui choisit chaque pièce du catalogue avec un œil affûté pour les tendances et la qualité.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>Prêt à explorer notre <em>catalogue</em> ?</h2>
+    <p>Découvrez toutes nos pièces soigneusement sélectionnées pour vous.</p>
+    <a href="catalogue.html" class="cta-btn">Voir le catalogue →</a>
+  </div>
+
+  <footer>
+    <p>© 2025 EvaStore — Tous droits réservés</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('hamburger').classList.toggle('open');
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    const obs = new IntersectionObserver(es => es.forEach(e => {
+      if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+    }), {threshold:0.1});
+    document.querySelectorAll('.value-card,.team-card,.timeline-item').forEach(el => {
+      el.style.opacity='0'; el.style.transform='translateY(20px)';
+      el.style.transition='opacity 0.5s ease, transform 0.5s ease';
+      obs.observe(el);
+    });
+  </script>
 </body>
 </html>
