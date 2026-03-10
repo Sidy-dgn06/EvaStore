@@ -27,6 +27,21 @@
     nav ul { display:flex; gap:36px; list-style:none; }
     nav a { text-decoration:none; color:#6a6460; font-size:0.75rem; font-weight:500; letter-spacing:2px; text-transform:uppercase; transition:color 0.2s; }
     nav a:hover { color:#1e1e1a; }
+
+    /* ── BOUTON PANIER identique à l'accueil ── */
+    .nav-cart {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #1A1612; color: #ffffff;
+      border: none; border-radius: 30px;
+      padding: 0.5rem 1.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cart:hover { background: #8B5E3C; }
+
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; }
     .hamburger span { display:block; width:22px; height:1.5px; background:#1e1e1a; transition:all 0.3s; }
     .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
@@ -111,9 +126,9 @@
         <li><a href="catalogue.html">Catalogue</a></li>
         <li><a href="apropos.html">À Propos</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="panier.html">Panier</a></li>
       </ul>
     </nav>
+    <a href="panier.html" class="nav-cart">🛍 Mon Panier <span id="cartCount">3</span></a>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
@@ -125,7 +140,7 @@
       <li><a href="catalogue.html">Catalogue</a></li>
       <li><a href="apropos.html">À Propos</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="panier.html">Panier</a></li>
+      <li><a href="panier.html">🛍 Mon Panier</a></li>
     </ul>
   </div>
 
@@ -215,7 +230,7 @@
   </div>
 
   <footer>
-    <p>© 2025 EvaStore — Tous droits réservés</p>
+    <p>©️ 2025 EvaStore — Tous droits réservés</p>
   </footer>
 
   <div class="toast" id="toast"></div>

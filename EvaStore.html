@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
@@ -76,8 +75,8 @@
       transition: background 0.2s;
     }
     .nav-cart:hover { background: var(--gold); }
-
     /* HERO */
+
     .hero {
       max-width: 1200px;
       margin: 0 auto;
@@ -112,11 +111,7 @@
       color: var(--cream);
       margin-bottom: 1.2rem;
     }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--gold);
-    }
+    .hero-title em { font-style: italic; color: var(--gold); }
 
     .hero-desc {
       font-size: 1rem;
@@ -126,9 +121,7 @@
       margin-bottom: 2.5rem;
     }
 
-    .hero-cta {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--dark) 0%, #3a2e25 100%);
@@ -144,6 +137,22 @@
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 30px rgba(250, 250, 250, 0.25);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, #a87020 100%);
+      color: var(--white);
+      border: none; border-radius: 14px;
+      padding: 0.9rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(200,150,62,0.4);
     }
 
     .btn-outline {
@@ -169,14 +178,12 @@
       padding-top: 2rem;
       border-top: 1px solid var(--border);
     }
-
     .stat-num {
       font-family: 'Playfair Display', serif;
       font-size: 1.8rem; font-weight: 700; color: var(--white);
     }
     .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 
-    /* Hero visual */
     .hero-visual {
       animation: fadeSlideIn 0.6s ease 0.15s both;
       position: relative;
@@ -200,14 +207,15 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 5rem;
       margin-bottom: 1.5rem;
+      overflow: hidden;
     }
+    .hero-product-img img { width: 100%; height: 100%; object-fit: cover; }
 
     .hero-product-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem; font-weight: 600;
       margin-bottom: 0.4rem;
     }
-
     .hero-product-price {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem; font-weight: 700; color: var(--gold);
@@ -238,7 +246,6 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.09);
       animation: float 3s ease-in-out infinite;
     }
-
     .floating-badge.b1 { top: -18px; right: 20px; }
     .floating-badge.b2 { bottom: 30px; left: -20px; animation-delay: 1.5s; }
 
@@ -246,6 +253,7 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
+
 
     /* SECTION TITLE */
     .section-header {
@@ -255,10 +263,10 @@
     .section-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: 2.2rem; font-weight: 700;
-      color: var(--dark);
-      margin-bottom: 0.5rem;
+      color: var(--dark); margin-bottom: 0.5rem;
     }
     .section-header p { color: var(--muted); font-size: 0.95rem; }
+
 
     /* CATEGORIES */
     .categories-section {
@@ -269,8 +277,7 @@
     }
 
     .categories-grid {
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.2rem;
@@ -290,20 +297,19 @@
     .cat-card:nth-child(2) { animation-delay: 0.10s; background: #F0F7FF; }
     .cat-card:nth-child(3) { animation-delay: 0.15s; background: #F0FFF4; }
     .cat-card:nth-child(4) { animation-delay: 0.20s; background: #FFF5F8; }
-
     .cat-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0,0,0,0.08);
       border-color: var(--light-brown);
     }
 
-    .cat-icon { font-size: 2.8rem; margin-bottom: 1rem; }
     .cat-name {
       font-family: 'Playfair Display', serif;
       font-size: 1rem; font-weight: 600;
       color: var(--dark); margin-bottom: 0.3rem;
     }
     .cat-count { font-size: 0.78rem; color: var(--muted); }
+
 
     /* BUG FIX #5: .hero-product-meta non stylisé */
     .hero-product-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.6rem; }
@@ -318,12 +324,10 @@
       height: auto;
     }
 
+  
     .cat-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 14px;
-      margin-top: 1rem;
+      width: 100%; height: 180px;
+      object-fit: cover; border-radius: 14px; margin-top: 1rem;
     }
 
     /* PRODUCTS */
@@ -336,16 +340,12 @@
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 2.5rem;
     }
-
     .products-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem; font-weight: 700; color: var(--cream);
     }
 
-    .filter-tabs {
-      display: flex; gap: 0.5rem;
-    }
-
+    .filter-tabs { display: flex; gap: 0.5rem; }
     .filter-tab {
       background: none;
       border: 1.5px solid var(--border);
@@ -381,33 +381,24 @@
     .product-card:nth-child(4) { animation-delay: 0.20s; }
     .product-card:nth-child(5) { animation-delay: 0.25s; }
     .product-card:nth-child(6) { animation-delay: 0.30s; }
-
     .product-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 16px 40px rgba(0,0,0,0.1);
     }
 
     .product-img {
-      width: 100%;
-      height: 220px;
+      width: 100%; height: 220px;
       background: var(--cream);
       display: flex; align-items: center; justify-content: center;
       font-size: 4.5rem;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
     .product-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
       transition: transform 0.35s ease;
     }
-
-    .product-img:hover img {
-      transform: scale(1.08);
-    }
+    .product-img:hover img { transform: scale(1.08); }
 
     .product-badge {
       position: absolute; top: 14px; left: 14px;
@@ -433,19 +424,13 @@
     .product-fav:hover { transform: scale(1.15); background: #FFF0F0; }
 
     .product-body { padding: 1.2rem 1.3rem 1.4rem; }
-
     .product-name {
       font-family: 'Playfair Display', serif;
       font-size: 1rem; font-weight: 600;
       color: var(--dark); margin-bottom: 0.3rem;
     }
-
     .product-variant { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.9rem; }
-
-    .product-footer {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
+    .product-footer { display: flex; align-items: center; justify-content: space-between; }
     .product-price-block .current-price {
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem; font-weight: 700; color: var(--dark);
@@ -468,27 +453,20 @@
     .promo-banner {
       background: linear-gradient(135deg, var(--dark) 0%, #3a2e25 60%, #5c3d1e 100%);
       padding: 4rem 2rem;
-      margin: 0;
     }
-
     .promo-inner {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr auto;
       align-items: center; gap: 3rem;
     }
-
     .promo-text h2 {
       font-family: 'Playfair Display', serif;
       font-size: 2.4rem; font-weight: 700; color: var(--white);
       margin-bottom: 0.7rem;
     }
-
     .promo-text h2 em { color: var(--gold); font-style: italic; }
-
     .promo-text p { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.6; }
-
     .promo-action { flex-shrink: 0; }
-
     .promo-code-box {
       background: rgba(255,255,255,0.08);
       border: 1.5px dashed rgba(200,150,62,0.6);
@@ -496,15 +474,12 @@
       padding: 1.5rem 2rem;
       text-align: center; margin-bottom: 1.2rem;
     }
-
     .promo-code {
       font-family: 'Playfair Display', serif;
       font-size: 2rem; font-weight: 700; color: var(--gold);
       letter-spacing: 4px;
     }
-
     .promo-code-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
-
     .btn-promo {
       background: var(--gold); color: var(--dark);
       border: none; border-radius: 12px;
@@ -524,31 +499,22 @@
       background: var(--white);
       border-top: 1px solid var(--border);
     }
-
     .features-grid {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
     }
-
     .feature-card {
       text-align: center; padding: 1.5rem 1rem;
-      border-radius: 16px;
-      transition: background 0.25s;
+      border-radius: 16px; transition: background 0.25s;
     }
     .feature-card:hover { background: var(--cream); }
-
-    .feature-icon {
-      font-size: 2.2rem; margin-bottom: 1rem;
-      display: block;
-    }
-
+    .feature-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
     .feature-title {
       font-family: 'Playfair Display', serif;
       font-size: 1rem; font-weight: 600;
       color: var(--dark); margin-bottom: 0.4rem;
     }
-
     .feature-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
     /* FOOTER */
@@ -557,22 +523,18 @@
       color: rgba(255,255,255,0.7);
       padding: 3.5rem 2rem 2rem;
     }
-
     .footer-inner {
       max-width: 1200px; margin: 0 auto;
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 3rem; margin-bottom: 3rem;
     }
-
     .footer-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem; font-weight: 700; color: var(--white);
       margin-bottom: 0.8rem;
     }
     .footer-logo span { color: var(--gold); }
-
     .footer-desc { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
-
     .footer-col h4 {
       font-family: 'Playfair Display', serif;
       font-size: 0.95rem; font-weight: 600; color: var(--white);
@@ -584,7 +546,6 @@
       margin-bottom: 0.6rem; transition: color 0.2s;
     }
     .footer-col a:hover { color: var(--gold); }
-
     .footer-bottom {
       max-width: 1200px; margin: 0 auto;
       padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
@@ -734,7 +695,7 @@
 
     /* RESPONSIVE */
     @media (max-width: 960px) {
-      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem 3rem; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
       .hero-visual { display: none; }
       .hero-title { font-size: 2.8rem; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
@@ -748,7 +709,6 @@
       nav ul { display: none; }
       nav { padding: 0 1.2rem; }
       .products-grid { grid-template-columns: 1fr; }
-      .categories-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-stats { gap: 1.5rem; }
       .hero-title { font-size: 2.2rem; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
@@ -756,7 +716,6 @@
       .filter-tabs { display: none; }
     }
   </style>
-
 </head>
 <body>
 
@@ -781,6 +740,7 @@
       <div class="hero-cta">
         <a href="catalogue.html" class="btn-primary">Découvrir la boutique →</a>
         <a href="apropos.html" class="btn-outline">Notre histoire</a>
+        <a href="commande.html" class="btn-gold">Commander →</a>
       </div>
       <div class="hero-stats">
         <div>
@@ -797,58 +757,48 @@
         </div>
       </div>
     </div>
-
-```
-<div class="hero-visual">
-  <div class="hero-card-main">
-    <div class="hero-product-img"><img src="images/robe dorée.jpg" alt=""></div>
-    <div class="hero-product-name">Robe Élégance Dorée</div>
-    <div class="hero-product-meta">Taille M · Beige</div>
-    <div class="hero-product-price">45 000 FCFA</div>
-    <button class="add-to-cart-mini">Ajouter au panier</button>
-  </div>
-  <div class="floating-badge b1">✨ Tendance du moment</div>
-</div>
-```
-
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="hero-product-img"><img src="images/robe dorée.jpg" alt=""></div>
+        <div class="hero-product-name">Robe Élégance Dorée</div>
+        <div class="hero-product-meta">Taille M · Beige</div>
+        <div class="hero-product-price">45 000 FCFA</div>
+        <button class="add-to-cart-mini">Ajouter au panier</button>
+      </div>
+      <div class="floating-badge b1">✨ Tendance du moment</div>
+    </div>
   </div>
 </section>
 
 <section class="categories-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Nos Catégories</h2>
-      <p>Explorez notre sélection par univers</p>
-    </div>
-    <div class="categories-grid">
-      <a href="catalogue.html" class="cat-card">
-        <div class="cat-name">Robes & Tenues</div>
-        <div class="cat-count">142 articles</div>
-        <img src="images/robes 2.jpg" alt="">
-      </a>
-      <a href="catalogue.html" class="cat-card">
-        <div class="cat-name">Chaussures</div>
-        <div class="cat-count">98 articles</div>
-        <img src="images/talon.jpg" alt="">
-      </a>
-      <a href="catalogue.html" class="cat-card">
-        <div class="cat-name">Sacs & Accessoires</div>
-        <div class="cat-count">75 articles</div>
-        <img src="images/sac.jpg" alt="">
-      </a>
-      <a href="catalogue.html" class="cat-card">
-        <div class="cat-name">Bijoux</div>
-        <div class="cat-count">53 articles</div>
-        <img src="images/bijou.jpg" alt="">
-      </a>
-    </div>
+  <div class="section-header">
+    <h2>Nos Catégories</h2>
+    <p>Explorez notre sélection par univers</p>
+  </div>
+  <div class="categories-grid">
+    <a href="catalogue.html" class="cat-card">
+      <div class="cat-name">Robes & Tenues</div>
+      <div class="cat-count">142 articles</div>
+      <img src="images/robes 2.jpg" alt="">
+    </a>
+    <a href="catalogue.html" class="cat-card">
+      <div class="cat-name">Chaussures</div>
+      <div class="cat-count">98 articles</div>
+      <img src="images/talon.jpg" alt="">
+    </a>
+    <a href="catalogue.html" class="cat-card">
+      <div class="cat-name">Sacs & Accessoires</div>
+      <div class="cat-count">75 articles</div>
+      <img src="images/sac.jpg" alt="">
+    </a>
+    <a href="catalogue.html" class="cat-card">
+      <div class="cat-name">Bijoux</div>
+      <div class="cat-count">53 articles</div>
+      <img src="images/bijou.jpg" alt="">
+    </a>
   </div>
 </section>
 
-<section class="products-section">
-  <div class="products-header">
-    <h2>Produits Phares</h2>
-    <div style="display:flex; align-items:center; gap:1rem;">
       <button class="btn-add-product" onclick="openModal()">
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Ajouter un produit
@@ -879,7 +829,6 @@
         <div class="current-price">45 000 FCFA</div>
         <div class="old-price">52 000 FCFA</div>
       </div>
-      <button class="add-btn" title="Ajouter au panier">+</button>
     </div>
   </div>
 </div>
@@ -1124,7 +1073,7 @@
     <div class="footer-col">
       <h4>Service</h4>
       <a href="compte.html">Mon compte</a>
-      <a href="#">Mes commandes</a>
+      <a href="commande.html">Commander</a>
       <a href="#">Livraison</a>
       <a href="#">Retours</a>
     </div>
