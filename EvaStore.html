@@ -1,43 +1,344 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produit - EvaStore</title>
-    <link rel="stylesheet" href="EvaStore.Css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EvaStore — Accueil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="EvaStore.Css"/>
+
 </head>
 <body>
-    <header>
-        <div class="">EvaStore</div>
-        <nav>
-            <ul>
-                <li><a href="EvaStore.html">Accueil</a></li>
-                <li><a href="catalogue.html">Catalogue</a></li>
-                <li><a href="apropos.html">À Propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="panier.html">Panier</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="produit-detail">
-        <h2>T-Shirt Élégant</h2>
-        <img src="images/tshirt.jpg" alt="T-Shirt Élégant" />
-        <p>Description détaillée du produit ici.</p>
-        <p>Prix : 25€</p>
-        <button class="ajouter-panier">Ajouter au Panier</button>
+<!-- NAV -->
 
-        <h3>Avis Clients</h3>
-        <div class="avis">
-            <p><strong>Client 1:</strong> Super produit, très confortable !</p>
-            <p><strong>Client 2:</strong> J'adore la couleur et la qualité est top.</p>
+<nav>
+  <a href="EvaStore.html" class="logo">Eva<span>Store</span></a>
+  <ul>
+    <li><a href="EvaStore.html" class="active">Accueil</a></li>
+    <li><a href="catalogue.html">Catalogue</a></li>
+    <li><a href="apropos.html">À propos</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="panier.html" class="nav-cart">🛍 Mon Panier <span class="cart-count">3</span></a>
+</nav>
+
+<!-- HERO -->
+
+<section>
+  <div class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">✨ Nouvelle collection 2025</div>
+      <h1 class="hero-title">La mode qui<br/>vous rend <em>unique</em></h1>
+      <p class="hero-desc">Découvrez une sélection soigneusement choisie de vêtements, chaussures et accessoires pensés pour sublimer votre style au quotidien.</p>
+      <div class="hero-cta">
+        <a href="catalogue.html" class="btn-primary">Découvrir la boutique →</a>
+        <a href="apropos.html" class="btn-outline">Notre histoire</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Produits disponibles</div>
         </div>
-    </section>
+        <div>
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Note moyenne</div>
+        </div>
+        <div>
+          <div class="stat-num">2k+</div>
+          <div class="stat-label">Clients satisfaits</div>
+        </div>
+      </div>
+    </div>
 
-    <footer>
-        <p>&copy; 2023 EvaStore. Tous droits réservés.</p>
-    </footer>
+```
+<div class="hero-visual">
+  
+  <div class="hero-card-main">
+    <div class="hero-product-img"><img src="images/robe dorée.jpg" alt=""></div>
+    <div class="hero-product-name">Robe Élégance Dorée</div>
+    <div class="hero-product-meta">Taille M · Beige</div>
+    <div class="hero-product-price">45 000 FCFA</div>
+    <button class="add-to-cart-mini">Ajouter au panier</button>
+  </div>
+<div class="floating-badge b1"> Tendance du moment</div>
 
-    <script src="EvasStore.js"></script>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="categories-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Nos Catégories</h2>
+      <p>Explorez notre sélection par univers</p>
+    </div>
+    <div class="categories-grid">
+      <a href="catalogue.html" class="cat-card">
+        
+        <div class="cat-name">Robes & Tenues</div>
+        <div class="cat-count">142 articles</div>
+        <img src="images/robes 2.jpg" alt="">
+      </a>
+      <a href="catalogue.html" class="cat-card">
+        
+        <div class="cat-name">Chaussures</div>
+        <div class="cat-count">98 articles</div>
+        <img src="images/talon.jpg" alt="">
+      </a>
+      <a href="catalogue.html" class="cat-card">
+        <div class="cat-name">Sacs & Accessoires</div>
+        <div class="cat-count">75 articles</div>
+        <img src="images/sac.jpg" alt="">
+      </a>
+      <a href="catalogue.html" class="cat-card">
+        <div class="cat-name">Bijoux</div>
+        <div class="cat-count">53 articles</div>
+        <img src="images/bijou.jpg" alt="">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="products-section">
+  <div class="products-header">
+    <h2>Produits Phares</h2>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="setFilter(this)">Tous</button>
+      <button class="filter-tab" onclick="setFilter(this)">Nouveautés</button>
+      <button class="filter-tab" onclick="setFilter(this)">Promos</button>
+      <button class="filter-tab" onclick="setFilter(this)">Tendances</button>
+    </div>
+  </div>
+
+  <div class="products-grid">
+
+<div class="product-card">
+  <div class="product-img">
+    <img src="images/robe dorée.jpg" alt="">
+    <span class="product-badge new">Nouveauté</span>
+    <button class="product-fav" onclick="toggleFav(this)"></button>
+  </div>
+  <div class="product-body">
+    <div class="product-name">Robe Élégance Dorée</div>
+    <div class="product-variant">Taille : M · Beige</div>
+    <div class="product-footer">
+      <div class="product-price-block">
+        <div class="current-price">45 000 FCFA</div>
+        <div class="old-price">52 000 FCFA</div>
+      </div>
+      <button class="add-btn" title="Ajouter au panier">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card">
+  <div class="product-img">
+    
+    <span class="product-badge trend">Tendance</span>
+    <button class="product-fav"></button>
+  </div>
+  <div class="product-body">
+    <div class="product-name">Escarpins Classiques</div>
+    <div class="product-variant">Pointure : 39 · Noir</div>
+    <div class="product-footer">
+      <div class="product-price-block">
+        <div class="current-price">28 000 FCFA</div>
+      </div>
+      <button class="add-btn" title="Ajouter au panier">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card">
+  <div class="product-img">
+    👜
+    <span class="product-badge promo">Promo</span>
+    <button class="product-fav" onclick="toggleFav(this)">🤍</button>
+  </div>
+  <div class="product-body">
+    <div class="product-name">Sac à Main Cuir Eva</div>
+    <div class="product-variant">Taille : Standard · Caramel</div>
+    <div class="product-footer">
+      <div class="product-price-block">
+        <div class="current-price">35 000 FCFA</div>
+        <div class="old-price">42 000 FCFA</div>
+      </div>
+      <button class="add-btn" title="Ajouter au panier">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card">
+  <div class="product-img">
+    🧣
+    <span class="product-badge new">Nouveauté</span>
+    <button class="product-fav" onclick="toggleFav(this)">🤍</button>
+  </div>
+  <div class="product-body">
+    <div class="product-name">Foulard Soie Dorée</div>
+    <div class="product-variant">Couleur : Ivoire · Or</div>
+    <div class="product-footer">
+      <div class="product-price-block">
+        <div class="current-price">12 000 FCFA</div>
+      </div>
+      <button class="add-btn" title="Ajouter au panier">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card">
+  <div class="product-img">
+    💍
+    <span class="product-badge trend">Tendance</span>
+    <button class="product-fav">🤍</button>
+  </div>
+  <div class="product-body">
+    <div class="product-name">Collier Perles Eva</div>
+    <div class="product-variant">Métal : Plaqué or</div>
+    <div class="product-footer">
+      <div class="product-price-block">
+        <div class="current-price">18 500 FCFA</div>
+        <div class="old-price">22 000 FCFA</div>
+      </div>
+      <button class="add-btn" title="Ajouter au panier">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="product-card">
+  <div class="product-img">
+    🧥
+    <span class="product-badge promo">Promo</span>
+    <button class="product-fav" onclick="toggleFav(this)">🤍</button>
+  </div>
+  <div class="product-body">
+    <div class="product-name">Veste Blazer Chic</div>
+    <div class="product-variant">Taille : L · Noir</div>
+    <div class="product-footer">
+      <div class="product-price-block">
+        <div class="current-price">58 000 FCFA</div>
+        <div class="old-price">72 000 FCFA</div>
+      </div>
+      <button class="add-btn" title="Ajouter au panier">+</button>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="text-center mt-3">
+    <a href="catalogue.html" class="btn-outline">Voir tous les produits →</a>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+
+<section class="promo-banner">
+  <div class="promo-inner">
+    <div class="promo-text">
+      <h2>Offre exclusive <em>−15%</em><br/>sur votre première commande</h2>
+      <p>Profitez d'une réduction immédiate sur l'ensemble du catalogue.<br/>Offre valable jusqu'au 31 mars 2025 pour les nouveaux clients.</p>
+    </div>
+    <div class="promo-action">
+      <div class="promo-code-box">
+        <div class="promo-code">EVA15</div>
+        <div class="promo-code-label">Code promo à utiliser au panier</div>
+      </div>
+      <button class="btn-promo" onclick="copyCode()">📋 Copier le code</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+
+<section class="features-section">
+  <div class="section-header">
+    <h2>Pourquoi EvaStore ?</h2>
+    <p>Une expérience shopping pensée pour vous</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🚚</span>
+      <div class="feature-title">Livraison rapide</div>
+      <div class="feature-desc">Livraison   partout au Sénégal.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🔐</span>
+      <div class="feature-title">Paiement sécurisé</div>
+      <div class="feature-desc">Wave, Orange Money ou paiement à la livraison — vous choisissez.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">↩️</span>
+      <div class="feature-title">Retour facile</div>
+      <div class="feature-desc">30 jours pour changer d'avis, sans questions posées.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💬</span>
+      <div class="feature-title">Support 7j/7</div>
+      <div class="feature-desc">Notre équipe est disponible tous les jours pour vous accompagner.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Eva<span>Store</span></div>
+      <p class="footer-desc">Votre boutique de mode élégante en ligne. Des pièces soigneusement sélectionnées pour sublimer votre quotidien.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Boutique</h4>
+      <a href="catalogue.html">Catalogue</a>
+      <a href="#">Nouveautés</a>
+      <a href="#">Promotions</a>
+      <a href="#">Lookbook</a>
+    </div>
+    <div class="footer-col">
+      <h4>Service</h4>
+      <a href="compte.html">Mon compte</a>
+      <a href="#">Mes commandes</a>
+      <a href="#">Livraison</a>
+      <a href="#">Retours</a>
+    </div>
+    <div class="footer-col">
+      <h4>EvaStore</h4>
+      <a href="apropos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">FAQ</a>
+      <a href="#">Mentions légales</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 EvaStore. Tous droits réservés.</span>
+    <span>Fait avec ❤️ pour la mode africaine</span>
+  </div>
+</footer>
+
+<script>
+  function setFilter(btn) {
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  function toggleFav(btn) {
+    btn.textContent = btn.textContent === '🤍' ? '❤️' : '🤍';
+  }
+
+  function copyCode() {
+    navigator.clipboard?.writeText('EVA15').catch(() => {});
+    const btn = document.querySelector('.btn-promo');
+    btn.textContent = '✅ Code copié !';
+    setTimeout(() => btn.textContent = '📋 Copier le code', 2000);
+  }
+</script>
+
 </body>
 </html>
