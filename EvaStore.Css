@@ -1,4 +1,5 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
   --cream: #F9F5F0;
   --dark: #1A1612;
@@ -292,6 +293,21 @@ nav ul a:hover, nav ul a.active { color: var(--dark); }
 }
 .cat-count { font-size: 0.78rem; color: var(--muted); }
 
+/* ── IMAGES (uniform size) ── */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.cat-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 1rem;
+}
+
 /* ── PRODUCTS ── */
 .products-section {
   padding: 5rem 2rem;
@@ -354,11 +370,26 @@ nav ul a:hover, nav ul a.active { color: var(--dark); }
 }
 
 .product-img {
-  height: 200px;
+  width: 100%;
+  height: 220px;
   background: var(--cream);
   display: flex; align-items: center; justify-content: center;
   font-size: 4.5rem;
   position: relative;
+  overflow: hidden;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease, object-fit 0.35s ease;
+}
+
+.product-img:hover img {
+  object-fit: contain;
+  transform: scale(1.08);
 }
 
 .product-badge {
@@ -571,3 +602,4 @@ footer {
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
   .filter-tabs { display: none; }
 }
+  
