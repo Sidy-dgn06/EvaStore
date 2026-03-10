@@ -79,37 +79,67 @@
       });
     }
 
+    /* ── Helpers ── */
+    const $ = (id) => document.getElementById(id);
+
+    const hideFeedback = () => {
+      $("success-msg").style.display = "none";
+      $("error-msg").style.display   = "none";
+    };
+
+    const showError = (msg) => {
+      const el = $("error-msg");
+      el.textContent   = "⚠️ " + msg;
+      el.style.display = "flex";
+    };
+
+    const setButtonState = (disabled, text) => {
+      const btn = $("btn-send");
+      btn.disabled    = disabled;
+      btn.textContent = text;
+    };
+
+    const resetForm = () => {
+      ["prenom", "nom", "email", "telephone", "message"].forEach(id => {
+        $(id).value = "";
+      });
+      $("sujet").selectedIndex = 0;
+      $("rgpd").checked       = false;
+    };
+
+    const getFormData = () => ({
+      prenom:    $("prenom").value.trim(),
+      nom:       $("nom").value.trim(),
+      email:     $("email").value.trim(),
+      telephone: $("telephone").value.trim(),
+      sujet:     $("sujet").value,
+      message:   $("message").value.trim(),
+      rgpd:      $("rgpd").checked
+    });
+
     /* ── Fonction principale ── */
     window.sendForm = async function () {
-      const prenom    = document.getElementById("prenom").value.trim();
-      const nom       = document.getElementById("nom").value.trim();
-      const email     = document.getElementById("email").value.trim();
-      const telephone = document.getElementById("telephone").value.trim();
-      const sujet     = document.getElementById("sujet").value;
-      const message   = document.getElementById("message").value.trim();
-      const rgpd      = document.getElementById("rgpd").checked;
+      const { prenom, nom, email, telephone, sujet, message, rgpd } = getFormData();
 
-      // Masquer les anciens messages
-      document.getElementById("success-msg").style.display = "none";
-      document.getElementById("error-msg").style.display   = "none";
+      hideFeedback();
 
       // Validation
       if (!prenom || !email || !sujet || !message) {
-        showError("Veuillez remplir tous les champs obligatoires (*).");
+        showError("Veuillez remplir tous les champs obligatoires (*).\n");
         return;
       }
+
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         showError("Adresse e-mail invalide.");
         return;
       }
+
       if (!rgpd) {
         showError("Veuillez accepter la politique de confidentialité.");
         return;
       }
 
-      const btn = document.getElementById("btn-send");
-      btn.disabled    = true;
-      btn.textContent = "⏳ Envoi en cours…";
+      setButtonState(true, "⏳ Envoi en cours…");
 
       const data = { prenom, nom, email, telephone, sujet, message };
 
@@ -121,38 +151,27 @@
         await sendWhatsApp(data);
 
         // ✅ Succès
-        btn.textContent = "✅ Message envoyé !";
-        document.getElementById("success-msg").style.display = "flex";
+        setButtonState(true, "✅ Message envoyé !");
+        $("success-msg").style.display = "flex";
 
         // Réinitialiser le formulaire
-        ["prenom","nom","email","telephone","message"].forEach(id => {
-          document.getElementById(id).value = "";
-        });
-        document.getElementById("sujet").selectedIndex = 0;
-        document.getElementById("rgpd").checked = false;
+        resetForm();
 
-        // Mettre à jour le compteur en sidebar
+        // Mettre à jour le compteur en sidebar (optionnel)
         updateCounter();
 
       } catch (err) {
-        btn.disabled    = false;
-        btn.textContent = "Envoyer le message →";
+        setButtonState(false, "Envoyer le message →");
         showError("Erreur lors de l'envoi. Vérifiez votre connexion et réessayez.");
         console.error(err);
       }
     };
 
-    function showError(msg) {
-      const el = document.getElementById("error-msg");
-      el.textContent   = "⚠️ " + msg;
-      el.style.display = "flex";
-    }
-
     // Petit compteur de messages reçus (optionnel)
     function updateCounter() {
-      const el = document.getElementById("msg-counter");
+      const el = $("msg-counter");
       if (el) {
-        const n = parseInt(el.textContent || "0") + 1;
+        const n = parseInt(el.textContent || "0", 10) + 1;
         el.textContent = n;
       }
     }
@@ -173,6 +192,11 @@
       --muted:       #9A8F85;
       --border:      #E8E0D8;
       --white:       #FFFFFF;
+
+      --radius: 12px;
+      --radius-card: 18px;
+      --transition-fast: 0.2s;
+      --transition-smooth: 0.25s;
     }
 
     body {
@@ -205,15 +229,15 @@
     nav ul { list-style: none; display: flex; gap: 2rem; }
     nav ul a {
       text-decoration: none; color: var(--muted);
-      font-size: 0.9rem; font-weight: 500; transition: color 0.2s;
+      font-size: 0.9rem; font-weight: 500; transition: color var(--transition-fast);
     }
     nav ul a:hover, nav ul a.active { color: var(--dark); }
     .nav-cart {
       display: flex; align-items: center; gap: 0.5rem;
       background: var(--dark); color: var(--white);
       border: none; border-radius: 30px; padding: 0.5rem 1.2rem;
-      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; text-decoration: none; transition: background 0.2s;
+      font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: background var(--transition-fast);
     }
     .nav-cart:hover { background: var(--brown); }
 
@@ -299,11 +323,11 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
-      border: 1.5px solid var(--border); border-radius: 12px;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
       padding: 0.75rem 1rem;
-      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; color: var(--dark);
+      font-size: 0.92rem; color: var(--dark);
       background: var(--cream); outline: none; resize: none;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
     }
     .form-group input::placeholder,
     .form-group textarea::placeholder { color: var(--muted); }
@@ -333,10 +357,10 @@
       width: 100%;
       background: linear-gradient(135deg, var(--dark) 0%, #3a2e25 100%);
       color: var(--white); border: none; border-radius: 14px; padding: 1rem;
-      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
+      font-size: 1rem; font-weight: 700;
       cursor: pointer; letter-spacing: 0.3px;
       display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     }
     .btn-send:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(26,22,18,0.25); }
     .btn-send:disabled { opacity: 0.7; cursor: not-allowed; }
@@ -357,16 +381,21 @@
     /* ── SIDEBAR ── */
     .contact-sidebar { display: flex; flex-direction: column; gap: 1.2rem; }
 
-    .info-card {
+    .info-card,
+    .db-card {
       background: var(--white); border-radius: 18px; border: 1px solid var(--border);
       padding: 1.5rem 1.8rem; animation: fadeSlideIn 0.5s ease both;
-      transition: box-shadow 0.25s, transform 0.25s;
+      transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
     }
+
     .info-card:nth-child(1) { animation-delay: 0.15s; }
     .info-card:nth-child(2) { animation-delay: 0.22s; }
     .info-card:nth-child(3) { animation-delay: 0.29s; }
     .info-card:nth-child(4) { animation-delay: 0.36s; }
     .info-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.07); transform: translateY(-2px); }
+
+    .db-card { animation-delay: 0.43s; }
+
     .info-card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
     .info-icon {
       width: 40px; height: 40px; border-radius: 10px;
@@ -390,10 +419,6 @@
     .hours-grid span:nth-child(odd) { font-weight: 500; color: var(--dark); }
 
     /* Carte statut Firebase */
-    .db-card {
-      background: var(--white); border-radius: 18px; border: 1px solid var(--border);
-      padding: 1.5rem 1.8rem; animation: fadeSlideIn 0.5s ease 0.43s both;
-    }
     .db-card h3 {
       font-family: 'Playfair Display', serif;
       font-size: 0.95rem; font-weight: 600; color: var(--dark); margin-bottom: 1rem;
@@ -444,9 +469,9 @@
     .faq-question {
       width: 100%; background: none; border: none;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 0; font-family: 'DM Sans', sans-serif;
+      padding: 1.2rem 0;
       font-size: 0.95rem; font-weight: 600; color: var(--dark);
-      cursor: pointer; text-align: left; transition: color 0.2s;
+      cursor: pointer; text-align: left; transition: color var(--transition-fast);
     }
     .faq-question:hover { color: var(--brown); }
     .faq-chevron {
@@ -523,11 +548,6 @@
     <div class="contact-hero-badge">✉️ Nous sommes à votre écoute</div>
     <h1>Parlons de votre <em>style</em></h1>
     <p>Une question sur une commande, un conseil mode ou simplement envie d'échanger ? Notre équipe vous répond dans les plus brefs délais.</p>
-    <div class="hero-pills">
-      <span class="hero-pill">🔥 Enregistré sur Firebase</span>
-      <span class="hero-pill">💬 Notification WhatsApp</span>
-      <span class="hero-pill">⚡ Réponse sous 24h</span>
-    </div>
   </div>
 </section>
 
@@ -540,13 +560,6 @@
   <div class="contact-form-card">
     <h2>Envoyer un message</h2>
     <p>Votre message sera enregistré dans notre base de données et nous recevrons une notification WhatsApp instantanément.</p>
-
-```
-<div class="integration-badges">
-  <span class="int-badge firebase">🔥 Firebase Firestore · evastore-c16a6</span>
-  <span class="int-badge whatsapp">💬 WhatsApp · CallMeBot</span>
-</div>
-
 <div class="form-row">
   <div class="form-group">
     <label for="prenom">Prénom *</label>
@@ -647,23 +660,7 @@
 
 <!-- Statut Firebase -->
 <div class="db-card">
-  <h3>🔥 Base de données Firebase</h3>
-  <div class="db-row">
-    <span class="db-label">Projet</span>
-    <span class="db-val">evastore-c16a6</span>
-  </div>
-  <div class="db-row">
-    <span class="db-label">Collection</span>
-    <span class="db-val">messages_contact</span>
-  </div>
-  <div class="db-row">
-    <span class="db-label">Firebase</span>
-    <span class="db-val"><span class="dot green"></span>Connecté</span>
-  </div>
-  <div class="db-row">
-    <span class="db-label">WhatsApp</span>
-    <span class="db-val"><span class="dot orange"></span>Clé à configurer</span>
-  </div>
+
 </div>
 
 <div class="social-card">
