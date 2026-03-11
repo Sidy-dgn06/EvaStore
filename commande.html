@@ -128,7 +128,7 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
-    <a href="panier.html" class="nav-cart">🛍 Mon Panier <span id="cartCount">3</span></a>
+    <a href="panier.html" class="nav-cart">🛍 Mon Panier <span id="cartCount">0</span></a>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
@@ -236,6 +236,13 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    function updateCartBadge() {
+  const cart = JSON.parse(localStorage.getItem('evastore_cart') || '[]');
+  const total = cart.reduce((s, i) => s + (i.qty || 0), 0);
+  const badge = document.getElementById('cartCount');
+  if (badge) badge.textContent = total;
+}
+updateCartBadge();
     const WA_NUMBER = "221706174534";
 
     function updateRecap() {

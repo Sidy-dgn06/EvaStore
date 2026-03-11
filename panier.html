@@ -273,69 +273,73 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const prices = { 'item-1': 25, 'item-2': 45 };
-    const qtys   = { 'item-1': 1,  'item-2': 1  };
-    let promoApplied = false;
+  // ── PANIER localStorage ──
+  function getCart() {
+    return JSON.parse(localStorage.getItem('evastore_cart') || '[]');
+  }
+  function saveCart(cart) {
+    localStorage.setItem('evastore_cart', JSON.stringify(cart));
+  }
+  function updateCartBadge() {
+    const total = getCart().reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = total;
+  }
 
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
-    }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
 
-    function updateSummary() {
-      let sub = 0, count = 0;
-      for (const id in prices) {
-        if (document.getElementById(id)) {
-          sub += prices[id] * qtys[id];
-          count += qtys[id];
-        }
-      }
-      const tva = Math.round(sub * 0.2);
-      const total = promoApplied ? Math.round((sub + tva) * 0.9) : sub + tva;
-      document.getElementById('subtotal').textContent    = sub + '€';
-      document.getElementById('tva').textContent         = tva + '€';
-      document.getElementById('totalAmount').textContent = total + '€';
-      document.getElementById('heroTotal').textContent   = sub + '€';
-      document.getElementById('cartCount').textContent   = count;
-      document.getElementById('itemCountText').textContent =
-        count === 0 ? 'Panier vide' :
-        count + ' article' + (count > 1 ? 's' : '') + ' sélectionné' + (count > 1 ? 's' : '');
-      if (count === 0) document.getElementById('emptyCart').classList.add('show');
+  function addToCart(btn, name, price) {
+    const cart = getCart();
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, qty: 1 });
     }
+    saveCart(cart);
+    updateCartBadge();
+    btn.textContent = '✓ Ajouté';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = '+ Panier'; btn.classList.remove('added'); }, 2000);
+    showToast(`✓ ${name} ajouté au panier`);
+  }
 
-    function removeItem(id) {
-      const el = document.getElementById(id);
-      el.style.opacity = '0';
-      el.style.transform = 'translateX(20px)';
-      el.style.transition = 'all 0.3s ease';
-      setTimeout(() => {
-        el.remove();
-        delete prices[id];
-        delete qtys[id];
-        updateSummary();
-        showToast('Article retiré du panier');
-      }, 300);
-    }
+  function toggleWish(btn) {
+    btn.classList.toggle('liked');
+    showToast(btn.classList.contains('liked') ? '❤️ Ajouté aux favoris' : '🤍 Retiré des favoris');
+  }
 
-    function applyPromo() {
-      const code = document.getElementById('promoInput').value.trim().toUpperCase();
-      if (code === 'EVASTORE10' && !promoApplied) {
-        promoApplied = true;
-        showToast('✓ Code promo appliqué — 10% de réduction !');
-        updateSummary();
-      } else if (promoApplied) {
-        showToast('Un code promo est déjà appliqué.');
-      } else {
-        showToast('Code promo invalide.');
-      }
-    }
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    let count = 0;
+    document.querySelectorAll('.product-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) { card.classList.remove('hidden'); count++; }
+      else { card.classList.add('hidden'); }
+    });
+    document.getElementById('resultsCount').textContent = count + ' article' + (count > 1 ? 's' : '');
+  }
 
-    function toggleMenu() {
-      document.getElementById('hamburger').classList.toggle('open');
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-  </script>
+  function sortProducts(val) {
+    const grid = document.getElementById('productsGrid');
+    const cards = Array.from(grid.querySelectorAll('.product-card:not(.hidden)'));
+    if (val === 'price-asc') cards.sort((a,b) => +a.dataset.price - +b.dataset.price);
+    else if (val === 'price-desc') cards.sort((a,b) => +b.dataset.price - +a.dataset.price);
+    else if (val === 'new') cards.sort((a,b) => (b.dataset.new?1:0) - (a.dataset.new?1:0));
+    cards.forEach(c => grid.appendChild(c));
+  }
+
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Charger le badge au démarrage
+  updateCartBadge();
+</script>
 </body>
 </html>
