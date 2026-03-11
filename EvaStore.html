@@ -64,7 +64,6 @@
     }
     nav ul a:hover, nav ul a.active { color: var(--dark); }
 
-   
     /* HERO */
 
     .hero {
@@ -1086,7 +1085,7 @@
   function updateCartCount() {
     try {
       const cart = JSON.parse(localStorage.getItem('evastore_cart') || '[]');
-      const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      const count = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
       document.getElementById('cartCount').textContent = count;
     } catch(e) {
       document.getElementById('cartCount').textContent = '0';
@@ -1255,6 +1254,15 @@
     const saved = JSON.parse(localStorage.getItem('evastore_featured') || '[]');
     saved.forEach(p => renderProductCard(p));
   })();
+</script>
+<script>
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem('evastore_cart') || '[]');
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    const badge = document.getElementById('cartCount');
+    if (badge) badge.textContent = total;
+  }
+  updateCartBadge();
 </script>
 
 </body>

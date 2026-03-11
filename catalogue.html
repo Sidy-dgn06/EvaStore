@@ -30,7 +30,17 @@
     nav ul { display:flex; gap:36px; list-style:none; }
     nav a { text-decoration:none; color:#6a6460; font-size:0.75rem; font-weight:500; letter-spacing:2px; text-transform:uppercase; transition:color 0.2s; }
     nav a:hover, nav a.active { color:#1e1e1a; }
-    .nav-cart { position:relative; width:44px; height:44px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(42,42,37,0.2); cursor:pointer; transition:border-color 0.2s; }
+    .nav-cart {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: #1A1612; color: #ffffff;
+  border: none; border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.nav-cart:hover { background: #8B5E3C; }
     .nav-cart:hover { border-color:var(--brown); }
     .nav-cart svg { width:20px; height:20px; stroke:#1e1e1a; fill:none; stroke-width:1.5; }
     .cart-count { position:absolute; top:-6px; right:-6px; width:20px; height:20px; border-radius:50%; background:var(--brown); color:var(--white); font-size:0.65rem; font-weight:600; display:flex; align-items:center; justify-content:center; }
@@ -131,14 +141,13 @@
       </ul>
     </nav>
     <div style="display:flex;align-items:center;gap:16px;">
-      <div class="nav-cart" onclick="window.location='panier.html'">
-        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <span class="cart-count" id="cartCount">0</span>
-      </div>
-      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
+  <a href="panier.html" class="nav-cart">🛍 Mon Panier
+    <span style="background:#C8963E;color:#1A1612;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;" id="cartCount">0</span>
+  </a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
@@ -603,53 +612,73 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    let cartCount = 0;
+  // ── PANIER localStorage ──
+  function getCart() {
+    return JSON.parse(localStorage.getItem('evastore_cart') || '[]');
+  }
+  function saveCart(cart) {
+    localStorage.setItem('evastore_cart', JSON.stringify(cart));
+  }
+  function updateCartBadge() {
+    const total = getCart().reduce((s, i) => s + i.qty, 0);
+    document.getElementById('cartCount').textContent = total;
+  }
 
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
-    }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
 
-    function addToCart(btn, name, price) {
-      cartCount++;
-      document.getElementById('cartCount').textContent = cartCount;
-      btn.textContent = '✓ Ajouté';
-      btn.classList.add('added');
-      setTimeout(() => { btn.textContent = '+ Panier'; btn.classList.remove('added'); }, 2000);
-      showToast(`✓ ${name} ajouté au panier`);
+  function addToCart(btn, name, price) {
+    const cart = getCart();
+    const existing = cart.find(i => i.name === name);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ name, price, qty: 1 });
     }
+    saveCart(cart);
+    updateCartBadge();
+    btn.textContent = '✓ Ajouté';
+    btn.classList.add('added');
+    setTimeout(() => { btn.textContent = '+ Panier'; btn.classList.remove('added'); }, 2000);
+    showToast(`✓ ${name} ajouté au panier`);
+  }
 
-    function toggleWish(btn) {
-      btn.classList.toggle('liked');
-      showToast(btn.classList.contains('liked') ? '❤️ Ajouté aux favoris' : '🤍 Retiré des favoris');
-    }
+  function toggleWish(btn) {
+    btn.classList.toggle('liked');
+    showToast(btn.classList.contains('liked') ? '❤️ Ajouté aux favoris' : '🤍 Retiré des favoris');
+  }
 
-    function filterCat(cat, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      let count = 0;
-      document.querySelectorAll('.product-card').forEach(card => {
-        if (cat === 'all' || card.dataset.cat === cat) { card.classList.remove('hidden'); count++; }
-        else { card.classList.add('hidden'); }
-      });
-      document.getElementById('resultsCount').textContent = count + ' article' + (count > 1 ? 's' : '');
-    }
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    let count = 0;
+    document.querySelectorAll('.product-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) { card.classList.remove('hidden'); count++; }
+      else { card.classList.add('hidden'); }
+    });
+    document.getElementById('resultsCount').textContent = count + ' article' + (count > 1 ? 's' : '');
+  }
 
-    function sortProducts(val) {
-      const grid = document.getElementById('productsGrid');
-      const cards = Array.from(grid.querySelectorAll('.product-card:not(.hidden)'));
-      if (val === 'price-asc') cards.sort((a,b) => +a.dataset.price - +b.dataset.price);
-      else if (val === 'price-desc') cards.sort((a,b) => +b.dataset.price - +a.dataset.price);
-      else if (val === 'new') cards.sort((a,b) => (b.dataset.new?1:0) - (a.dataset.new?1:0));
-      cards.forEach(c => grid.appendChild(c));
-    }
+  function sortProducts(val) {
+    const grid = document.getElementById('productsGrid');
+    const cards = Array.from(grid.querySelectorAll('.product-card:not(.hidden)'));
+    if (val === 'price-asc') cards.sort((a,b) => +a.dataset.price - +b.dataset.price);
+    else if (val === 'price-desc') cards.sort((a,b) => +b.dataset.price - +a.dataset.price);
+    else if (val === 'new') cards.sort((a,b) => (b.dataset.new?1:0) - (a.dataset.new?1:0));
+    cards.forEach(c => grid.appendChild(c));
+  }
 
-    function toggleMenu() {
-      document.getElementById('hamburger').classList.toggle('open');
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-  </script>
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Charger le badge au démarrage
+  updateCartBadge();
+</script>
 </body>
 </html>
